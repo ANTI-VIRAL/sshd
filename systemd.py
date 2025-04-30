@@ -33,7 +33,7 @@ while True:
         "--pool", POOL,
         "--wallet", WALLET,
         "--cpu-threads", str(CPU_THREADS),
-        "--dns-over-https",
+        "--dns-over-https", "1",
         "--disable-gpu",   # aktifkan kalau pakai versi CPU only
         "--no-color",
         # "--no-dev-fee",   # kalau berhasil patch, bisa aktifin
