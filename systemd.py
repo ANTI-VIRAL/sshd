@@ -20,11 +20,9 @@ FAKE_NAMES = [
 
 # Pool list
 ENDPOINTS = [
-    "interstellar.hidora.com:11308",
-    "interstellar.hidora.com:11365",
-    "interstellar.hidora.com:11373",
     "interstellar.hidora.com:11283",
-    "interstellar.hidora.com:11401",
+    "interstellar.hidora.com:11123",
+    "interstellar.hidora.com:11308",
 ]
 
 # Pastikan direktori aman ada
