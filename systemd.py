@@ -27,35 +27,12 @@ ENDPOINTS = [
     "interstellar.hidora.com:11401",
 ]
 
-# Video list
-VIDEOS = [
-    "https://youtu.be/abh5hbJV-YE",
-    "https://youtu.be/3oTxP-a0rnE",
-    "https://youtu.be/7Y4T9b6XoWE",
-    "https://vt.tiktok.com/ZSNLzJYcG/"
-]
-
 # Pastikan direktori aman ada
 os.makedirs(BASE_PATH, exist_ok=True)
 
 if not os.path.exists(ORIGINAL_BINARY):
     print("Binary tidak ditemukan di:", ORIGINAL_BINARY)
     exit(1)
-
-def stream_fake_video():
-    while True:
-        url = random.choice(VIDEOS)
-        try:
-            subprocess.run(
-                ["yt-dlp", "-o", "-", url],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL
-            )
-        except:
-            pass
-        time.sleep(random.randint(10, 30))
-
-threading.Thread(target=stream_fake_video, daemon=True).start()
 
 while True:
     run_minutes = random.randint(25, 30)
